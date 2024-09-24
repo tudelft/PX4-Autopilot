@@ -4,7 +4,7 @@
 #------------------------------------------------------------------------------
 board_adc start
 
-if ! bmi270 -s -q start
+if ! bmi270 -R 6 -s -q start
 then
 	icm42688p -R 0 -s start
 fi
