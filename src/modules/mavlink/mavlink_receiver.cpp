@@ -789,10 +789,10 @@ MavlinkReceiver::handle_message_optical_flow_rad(mavlink_message_t *msg)
 
 	const matrix::Vector3f integrated_gyro(flow.integrated_xgyro, flow.integrated_ygyro, flow.integrated_zgyro);
 
-	// if (integrated_gyro.isAllFinite()) {
-	// 	integrated_gyro.copyTo(sensor_optical_flow.delta_angle);
-	// 	sensor_optical_flow.delta_angle_available = true;
-	// }
+	if (integrated_gyro.isAllFinite()) {
+		integrated_gyro.copyTo(sensor_optical_flow.delta_angle);
+		sensor_optical_flow.delta_angle_available = true;
+	}
 
 	sensor_optical_flow.max_flow_rate       = NAN;
 	sensor_optical_flow.min_ground_distance = NAN;
