@@ -71,14 +71,14 @@ publications:
   - topic: /fmu/out/vehicle_trajectory_waypoint_desired
     type: px4_msgs::msg::VehicleTrajectoryWaypoint
 
-  - topic: /fmu/out/rpm
-    type: px4_msgs::msg::Rpm
+  # - topic: /fmu/out/rpm
+  #   type: px4_msgs::msg::Rpm
 
   - topic: /fmu/out/actuator_motors
     type: px4_msgs::msg::ActuatorMotors
 
-  - topic: /fmu/out/esc_status
-    type: px4_msgs::msg::EscStatus
+  # - topic: /fmu/out/esc_status
+  #   type: px4_msgs::msg::EscStatus
 
 # Create uORB::Publication
 subscriptions:
