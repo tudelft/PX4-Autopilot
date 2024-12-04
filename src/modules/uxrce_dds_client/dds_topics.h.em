@@ -30,8 +30,6 @@ import os
 #include <uORB/topics/@(include).h>
 @[end for]@
 
-#define UXRCE_DEFAULT_POLL_RATE 10
-
 typedef bool (*UcdrSerializeMethod)(const void* data, ucdrBuffer& buf, int64_t time_offset);
 
 static constexpr int max_topic_size = 512;
@@ -45,6 +43,7 @@ struct SendSubscription {
 	const char* dds_type_name;
 	uint32_t topic_size;
 	UcdrSerializeMethod ucdr_serialize_method;
+	float max_rate_hz;
 };
 
 // Subscribers for messages to send
@@ -56,6 +55,7 @@ struct SendTopicsSubs {
 			  "@(pub['dds_type'])",
 			  ucdr_topic_size_@(pub['simple_base_type'])(),
 			  &ucdr_serialize_@(pub['simple_base_type']),
+			  @(pub['max_rate_hz']),
 			},
 @[    end for]@
 	};
@@ -73,7 +73,7 @@ void SendTopicsSubs::init() {
 	for (unsigned idx = 0; idx < sizeof(send_subscriptions)/sizeof(send_subscriptions[0]); ++idx) {
 		fds[idx].fd = orb_subscribe(send_subscriptions[idx].orb_meta);
 		fds[idx].events = POLLIN;
-		orb_set_interval(fds[idx].fd, UXRCE_DEFAULT_POLL_RATE);
+		orb_set_interval(fds[idx].fd, send_subscriptions[idx].max_rate_hz > 0 ? 1000 / send_subscriptions[idx].max_rate_hz : 100);
 	}
 }
 

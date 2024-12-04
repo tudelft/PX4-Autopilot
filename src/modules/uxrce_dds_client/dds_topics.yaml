@@ -3,6 +3,8 @@
 # This file maps all the topics that are to be used on the uXRCE-DDS client.
 #
 #####
+default_max_rate_hz: 100.0
+
 publications:
 
   - topic: /fmu/out/register_ext_component_reply
@@ -76,6 +78,7 @@ publications:
 
   - topic: /fmu/out/actuator_motors
     type: px4_msgs::msg::ActuatorMotors
+    # max_rate_hz: 200.0
 
   # - topic: /fmu/out/esc_status
   #   type: px4_msgs::msg::EscStatus
