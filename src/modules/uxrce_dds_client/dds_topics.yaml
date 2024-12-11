@@ -34,11 +34,12 @@ publications:
   - topic: /fmu/out/message_format_response
     type: px4_msgs::msg::MessageFormatResponse
 
-  - topic: /fmu/out/position_setpoint_triplet
-    type: px4_msgs::msg::PositionSetpointTriplet
+  # - topic: /fmu/out/position_setpoint_triplet
+  #   type: px4_msgs::msg::PositionSetpointTriplet
 
   - topic: /fmu/out/sensor_combined
     type: px4_msgs::msg::SensorCombined
+    max_rate_hz: 250.0
 
   - topic: /fmu/out/timesync_status
     type: px4_msgs::msg::TimesyncStatus
@@ -48,6 +49,7 @@ publications:
 
   # - topic: /fmu/out/vehicle_attitude
   #   type: px4_msgs::msg::VehicleAttitude
+  #   max_rate_hz: 200.0
 
   - topic: /fmu/out/vehicle_control_mode
     type: px4_msgs::msg::VehicleControlMode
@@ -66,7 +68,7 @@ publications:
 
   - topic: /fmu/out/vehicle_odometry
     type: px4_msgs::msg::VehicleOdometry
-    max_rate_hz: 200.0
+    max_rate_hz: 250.0
 
   - topic: /fmu/out/vehicle_status
     type: px4_msgs::msg::VehicleStatus
@@ -79,7 +81,7 @@ publications:
 
   - topic: /fmu/out/actuator_motors
     type: px4_msgs::msg::ActuatorMotors
-    max_rate_hz: 200.0
+    max_rate_hz: 800.0
 
   # - topic: /fmu/out/esc_status
   #   type: px4_msgs::msg::EscStatus
