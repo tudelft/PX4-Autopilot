@@ -86,6 +86,9 @@ publications:
   # - topic: /fmu/out/esc_status
   #   type: px4_msgs::msg::EscStatus
 
+  - topic: /fmu/out/hover_thrust_estimate
+    type: px4_msgs::msg::HoverThrustEstimate
+
 # Create uORB::Publication
 subscriptions:
   - topic: /fmu/in/register_ext_component_request
