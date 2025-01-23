@@ -93,6 +93,10 @@ publications:
     type: px4_msgs::msg::VehicleAttitudeSetpoint
     max_rate_hz: 200.0
 
+  - topic: /fmu/out/vehicle_torque_setpoint
+    type: px4_msgs::msg::VehicleTorqueSetpoint
+    max_rate_hz: 200.0
+
 # Create uORB::Publication
 subscriptions:
   - topic: /fmu/in/register_ext_component_request
