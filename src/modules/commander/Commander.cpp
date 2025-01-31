@@ -69,6 +69,7 @@
 #include <math.h>
 #include <float.h>
 #include <cstring>
+#include <ctype.h>
 #include <matrix/math.hpp>
 
 #include <uORB/topics/mavlink_log.h>
@@ -416,6 +417,11 @@ int Commander::custom_command(int argc, char *argv[])
 			} else if (!strcmp(argv[1], "ext1")) {
 				send_vehicle_command(vehicle_command_s::VEHICLE_CMD_DO_SET_MODE, 1, PX4_CUSTOM_MAIN_MODE_AUTO,
 						     PX4_CUSTOM_SUB_MODE_EXTERNAL1);
+
+			} else if (!strncmp(argv[1], "ext", 3) && isdigit(argv[1][3])) {
+					int ext_mode_number = atoi(&argv[1][3]);
+					send_vehicle_command(vehicle_command_s::VEHICLE_CMD_DO_SET_MODE, 1, PX4_CUSTOM_MAIN_MODE_AUTO,
+										 PX4_CUSTOM_SUB_MODE_EXTERNAL1 + (ext_mode_number - 1));
 
 			} else {
 				PX4_ERR("argument %s unsupported.", argv[1]);
