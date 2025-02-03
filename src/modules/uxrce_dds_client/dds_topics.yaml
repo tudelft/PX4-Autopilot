@@ -72,7 +72,6 @@ publications:
 
   - topic: /fmu/out/vehicle_status
     type: px4_msgs::msg::VehicleStatus
-    max_rate_hz: 200.0
 
   # - topic: /fmu/out/vehicle_trajectory_waypoint_desired
   #   type: px4_msgs::msg::VehicleTrajectoryWaypoint
@@ -96,11 +95,11 @@ publications:
 
   - topic: /fmu/out/vehicle_torque_setpoint
     type: px4_msgs::msg::VehicleTorqueSetpoint
-    max_rate_hz: 200.0
+    max_rate_hz: 100.0
 
   - topic: /fmu/out/vehicle_rates_setpoint
     type: px4_msgs::msg::VehicleRatesSetpoint
-    max_rate_hz: 200.0
+    max_rate_hz: 100.0
 
 # Create uORB::Publication
 subscriptions:
