@@ -67,8 +67,8 @@ publications:
   # - topic: /fmu/out/vehicle_local_position
   #   type: px4_msgs::msg::VehicleLocalPosition
 
-  # - topic: /fmu/out/vehicle_odometry
-  #   type: px4_msgs::msg::VehicleOdometry
+  - topic: /fmu/out/vehicle_odometry
+    type: px4_msgs::msg::VehicleOdometry
 
   - topic: /fmu/out/vehicle_status
     type: px4_msgs::msg::VehicleStatus
@@ -80,15 +80,15 @@ publications:
   # - topic: /fmu/out/rpm
   #   type: px4_msgs::msg::Rpm
 
-  # - topic: /fmu/out/actuator_motors
-  #   type: px4_msgs::msg::ActuatorMotors
-  #   max_rate_hz: 500.0
+  - topic: /fmu/out/actuator_motors
+    type: px4_msgs::msg::ActuatorMotors
+    max_rate_hz: 500.0
 
   # - topic: /fmu/out/esc_status
   #   type: px4_msgs::msg::EscStatus
 
-  # - topic: /fmu/out/hover_thrust_estimate
-  #   type: px4_msgs::msg::HoverThrustEstimate
+  - topic: /fmu/out/hover_thrust_estimate
+    type: px4_msgs::msg::HoverThrustEstimate
 
   - topic: /fmu/out/vehicle_attitude_setpoint
     type: px4_msgs::msg::VehicleAttitudeSetpoint
