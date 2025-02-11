@@ -136,10 +136,11 @@ void FlightModeManager::updateParams()
 void FlightModeManager::start_flight_task()
 {
 	// Do not run any flight task for VTOLs in fixed-wing mode
-	// external states also return none and don't require/handle manual input
+	// or when in external auto mode
 	if ((_vehicle_status_sub.get().vehicle_type == vehicle_status_s::VEHICLE_TYPE_FIXED_WING)
-	    || ((_vehicle_status_sub.get().nav_state >= vehicle_status_s::NAVIGATION_STATE_EXTERNAL1)
-		&& (_vehicle_status_sub.get().nav_state <= vehicle_status_s::NAVIGATION_STATE_EXTERNAL8))) {
+		|| ((_vehicle_status_sub.get().nav_state >= vehicle_status_s::NAVIGATION_STATE_EXTERNAL1)
+		&& (_vehicle_status_sub.get().nav_state <= vehicle_status_s::NAVIGATION_STATE_EXTERNAL8)
+		&& _param_ext_mode_mode.get() == 0)) {
 		switchTask(FlightTaskIndex::None);
 		return;
 	}
@@ -205,7 +206,12 @@ void FlightModeManager::start_flight_task()
 	}
 
 	// Manual position control
-	if ((_vehicle_status_sub.get().nav_state == vehicle_status_s::NAVIGATION_STATE_POSCTL) || task_failure) {
+	// also when in external manual mode
+	if (_vehicle_status_sub.get().nav_state == vehicle_status_s::NAVIGATION_STATE_POSCTL
+		|| ((_vehicle_status_sub.get().nav_state >= vehicle_status_s::NAVIGATION_STATE_EXTERNAL1)
+		&& (_vehicle_status_sub.get().nav_state <= vehicle_status_s::NAVIGATION_STATE_EXTERNAL8)
+		&& _param_ext_mode_mode.get() == 1)
+		|| task_failure) {
 		found_some_task = true;
 		FlightTaskError error = FlightTaskError::NoError;
 

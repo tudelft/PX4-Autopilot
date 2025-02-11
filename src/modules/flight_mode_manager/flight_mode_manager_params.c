@@ -32,5 +32,15 @@
  ****************************************************************************/
 
 /**
- * @file flight_mode_manager_params.c
+ * External mode mode
+ *
+ * Set to 0 to disregard manual stick inputs when in an external mode (external modes will act as auto modes).
+ * Set to 1 to allow manual stick inputs when in an external mode (external modes will act as manual position control).
+ *
+ * @min 0
+ * @max 1
+ * @value 0 Auto mode
+ * @value 1 Manual mode
+ * @group Flight Mode Manager
  */
+PARAM_DEFINE_INT32(EXT_MODE_MODE, 0);
