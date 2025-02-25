@@ -240,7 +240,10 @@ void FlightModeManager::start_flight_task()
 	}
 
 	// Manual altitude control
-	if ((_vehicle_status_sub.get().nav_state == vehicle_status_s::NAVIGATION_STATE_ALTCTL) || task_failure) {
+	if (_vehicle_status_sub.get().nav_state == vehicle_status_s::NAVIGATION_STATE_ALTCTL
+			|| ((_vehicle_status_sub.get().nav_state >= vehicle_status_s::NAVIGATION_STATE_EXTERNAL1)
+		&& (_vehicle_status_sub.get().nav_state <= vehicle_status_s::NAVIGATION_STATE_EXTERNAL8)
+		&& _param_ext_mode_mode.get() == 2) || task_failure) {
 		found_some_task = true;
 		FlightTaskError error = FlightTaskError::NoError;
 
