@@ -36,11 +36,13 @@
  *
  * Set to 0 to disregard manual stick inputs when in an external mode (external modes will act as auto modes).
  * Set to 1 to allow manual stick inputs when in an external mode (external modes will act as manual position control).
+ * Set to 2 to allow manual stick inputs for attitude commands when in an external mode (external modes will act as manual altitude control).
  *
  * @min 0
- * @max 1
+ * @max 2
  * @value 0 Auto mode
  * @value 1 Manual mode
+ * @value 2 Altitude mode
  * @group Flight Mode Manager
  */
 PARAM_DEFINE_INT32(EXT_MODE_MODE, 0);
