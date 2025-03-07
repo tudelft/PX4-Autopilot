@@ -36,7 +36,7 @@
  *
  * Set to 0 to disregard manual stick inputs when in an external mode (external modes will act as auto modes).
  * Set to 1 to allow manual stick inputs when in an external mode (external modes will act as manual position control).
- * Set to 2 to allaw manual stick inputs for attitude commands when in an external mode (external modes will act as manual altitude control).
+ * Set to 2 to allow manual stick inputs for attitude commands when in an external mode (external modes will act as manual altitude control).
  *
  * @min 0
  * @max 2

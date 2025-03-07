@@ -72,20 +72,13 @@ publications:
 
   - topic: /fmu/out/vehicle_status
     type: px4_msgs::msg::VehicleStatus
-    # max_rate_hz: 200.0
 
   # - topic: /fmu/out/vehicle_trajectory_waypoint_desired
   #   type: px4_msgs::msg::VehicleTrajectoryWaypoint
 
-  # - topic: /fmu/out/rpm
-  #   type: px4_msgs::msg::Rpm
-
   - topic: /fmu/out/actuator_motors
     type: px4_msgs::msg::ActuatorMotors
     max_rate_hz: 500.0
-
-  # - topic: /fmu/out/esc_status
-  #   type: px4_msgs::msg::EscStatus
 
   - topic: /fmu/out/hover_thrust_estimate
     type: px4_msgs::msg::HoverThrustEstimate
