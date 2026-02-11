@@ -2300,8 +2300,10 @@ bool EKF2::UpdateFlowSample(ekf2_timestamps_s &ekf2_timestamps)
 			// is produced by a RH rotation of the image about the sensor axis.
 			flow_rate = Vector2f(-optical_flow.pixel_flow[0], -optical_flow.pixel_flow[1]) / dt;
 
-			if (optical_flow.delta_angle_available) {
-				gyro_rate = Vector3f(-optical_flow.delta_angle[0], -optical_flow.delta_angle[1], -optical_flow.delta_angle[2]) / dt;
+			const Vector3f delta_angle(optical_flow.delta_angle);
+
+			if (delta_angle.isAllFinite() && delta_angle.longerThan(0.f)) {
+				gyro_rate = Vector3f(-delta_angle(0), -delta_angle(1), -delta_angle(2)) / dt;
 			} else {
 				gyro_rate.setAll(NAN); // force EKF2 to use IMU gyros for flow compensation
 			}
