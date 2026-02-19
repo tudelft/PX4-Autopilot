@@ -210,16 +210,7 @@ float Ekf::calcOptFlowMeasVar(const flowSample &flow_sample)
 	}
 
 	// take the weighted average of the observation noise for the best and wort flow quality
-	float R_LOS = sq(R_LOS_best * weighting + R_LOS_worst * (1.f - weighting));
-
-	// increase measurement noise during yaw rotation to reduce sensitivity to
-	// spurious flow from sensors that don't handle rotational flow patterns well
-	const float yaw_rate = fabsf(_flow_sample_delayed.gyro_rate(2));
-	const float yaw_rate_threshold = 0.1f; // rad/s (~6 deg/s) below which no scaling is applied
-	if (yaw_rate > yaw_rate_threshold) {
-		const float yaw_noise_scale = 1.f + 10.f * (yaw_rate - yaw_rate_threshold); // linear scale
-		R_LOS *= sq(yaw_noise_scale);
-	}
+	const float R_LOS = sq(R_LOS_best * weighting + R_LOS_worst * (1.f - weighting));
 
 	return R_LOS;
 }

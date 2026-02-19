@@ -2299,14 +2299,7 @@ bool EKF2::UpdateFlowSample(ekf2_timestamps_s &ekf2_timestamps)
 			// NOTE: the EKF uses the reverse sign convention to the flow sensor. EKF assumes positive LOS rate
 			// is produced by a RH rotation of the image about the sensor axis.
 			flow_rate = Vector2f(-optical_flow.pixel_flow[0], -optical_flow.pixel_flow[1]) / dt;
-
-			const Vector3f delta_angle(optical_flow.delta_angle);
-
-			if (delta_angle.isAllFinite() && delta_angle.longerThan(0.f)) {
-				gyro_rate = Vector3f(-delta_angle(0), -delta_angle(1), -delta_angle(2)) / dt;
-			} else {
-				gyro_rate.setAll(NAN); // force EKF2 to use IMU gyros for flow compensation
-			}
+			gyro_rate = Vector3f(-optical_flow.delta_angle[0], -optical_flow.delta_angle[1], -optical_flow.delta_angle[2]) / dt;
 
 		} else if (optical_flow.quality == 0) {
 			// handle special case of SITL and PX4Flow where dt is forced to zero when the quaity is 0
