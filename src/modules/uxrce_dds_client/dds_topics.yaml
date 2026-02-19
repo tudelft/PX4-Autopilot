@@ -83,12 +83,6 @@ publications:
   - topic: /fmu/out/hover_thrust_estimate
     type: px4_msgs::msg::HoverThrustEstimate
 
-  - topic: /fmu/out/distance_sensor
-    type: px4_msgs::msg::DistanceSensor
-
-  - topic: /fmu/out/vehicle_optical_flow
-    type: px4_msgs::msg::VehicleOpticalFlow
-
 # Create uORB::Publication
 subscriptions:
   - topic: /fmu/in/register_ext_component_request

@@ -4,14 +4,9 @@
 #------------------------------------------------------------------------------
 board_adc start
 
-if ! mpu6000 -R 6 -s -q start
+if ! bmi270 -R 6 -s -q start
 then
-  if ! bmi270 -R 6 -s -q start
-  then
-	icm42688p -R 6 -s start
-  fi
+	icm42688p -R 0 -s start
 fi
-if ! bmp280 -X start
-then
-	spa06 -X start
-fi
+
+bmp280 -X start
